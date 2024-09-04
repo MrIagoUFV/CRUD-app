@@ -1,105 +1,42 @@
+<!--
+    Este é um projeto para aprender HTML, CSS e JavaScript vanilla através do desenvolvimento de um CRUD.
+    O objetivo é criar um to-do list com as seguintes funcionalidades:
+    - Cabeçalho com o título: To-do List (no canto esquerdo) e botão de adicionar (no canto direito)
+    - Campo para adicionar tarefa: caixa de texto e botão de adicionar. Por padrão, este campo estará escondido. Quando o usuário clicar em adicionar ou editar uma tarefa, este campo aparecerá. Quando o usuário enviar a tarefa ou clicar fora dela, este campo desaparecerá.
+    - Campo para exibir as tarefas: cada tarefa será exibida em uma linha, com opções para editar e excluir. Quando o usuário clicar em editar, a tarefa será apagada e aparecerá novamente no campo de adição para que o usuário possa reescrevê-la.
+    - Footer: um link para o meu GitHub, com o ícone do GitHub.
+    - O projeto utilizará a biblioteca de ícones Font Awesome e a biblioteca de fontes do Google.
+    - O tema do projeto será um fundo azul escuro e os itens serão skyblue, com inversão de cores para o hover.
+-->
+
+
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Template HTML Zerado</title>
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@700&display=swap" rel="stylesheet"> <!-- Fonte moderna -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"> <!-- Font Awesome -->
-    <style>
-        body {
-            background-color: #001f3f; /* Azul bem escuro */
-            color: #87CEEB; /* Skyblue para o texto */
-            display: flex; /* Flexbox para layout */
-            flex-direction: column; /* Direção da coluna */
-            align-items: center; /* Centraliza horizontalmente */
-            min-height: 100vh; /* Altura total da viewport */
-            margin: 0; /* Remove margens padrão */
-            padding: 20px; /* Adiciona um pouco de espaço */
-            box-sizing: border-box; /* Inclui padding e border na largura */
-        }
-        header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center; /* Centraliza verticalmente */
-            width: 100%; /* Largura total */
-            max-width: 600px; /* Largura máxima */
-            margin-bottom: 20px; /* Margem inferior */
-        }
-        h1 {
-            font-family: 'Roboto', sans-serif; /* Aplica a fonte moderna ao título */
-            margin: 0; /* Remove margens */
-        }
-        .add-task-container {
-            display: flex;
-            align-items: center;
-            overflow: hidden;
-        }
-        #taskInput {
-            width: 0;
-            padding: 10px;
-            border: 1px solid #87CEEB;
-            border-radius: 5px 0 0 5px;
-            transition: width 0.3s ease-out;
-            box-sizing: border-box;
-        }
-        #taskInput.show {
-            width: 200px;
-            margin-right: 5px;
-        }
-        button {
-            background-color: #87CEEB; /* Cor de fundo do botão */
-            color: #001f3f; /* Cor do texto do botão */
-            border: none; /* Remove borda */
-            border-radius: 5px; /* Bordas arredondadas */
-            padding: 10px; /* Espaçamento interno */
-            cursor: pointer; /* Muda o cursor ao passar o mouse */
-            transition: background-color 0.3s; /* Transição suave */
-        }
-        button:hover {
-            background-color: #001f3f; /* Cor de fundo ao passar o mouse */
-            color: #87CEEB; /* Cor do texto ao passar o mouse */
-        }
-        @media (max-width: 600px) {
-            h1 {
-                font-size: 24px; /* Reduz o tamanho da fonte do título */
-            }
-            #taskInput, button {
-                font-size: 16px; /* Reduz o tamanho da fonte do input */
-            }
-        }
-    </style>
+    <title>To-do List</title>
 </head>
 <body>
     <header>
         <h1>To-do List</h1>
-        <div class="add-task-container">
-            <input type="text" id="taskInput" placeholder="Adicionar nova tarefa">
-            <button onclick="toggleAddTask()"><i class="fas fa-plus"></i></button> <!-- Ícone do Font Awesome -->
-        </div>
+        <button>Adicionar</button>
     </header>
-    <script>
-        function toggleAddTask() {
-            const taskInput = document.getElementById('taskInput');
-            taskInput.classList.toggle('show');
-            if (taskInput.classList.contains('show')) {
-                taskInput.focus();
-            }
-        }
-
-        document.getElementById('taskInput').addEventListener('keypress', function(e) {
-            if (e.key === 'Enter') {
-                addTask();
-            }
-        });
-
-        function addTask() {
-            const taskInput = document.getElementById('taskInput');
-            if (taskInput.value.trim() !== '') {
-                console.log(taskInput.value);
-                taskInput.value = '';
-            }
-        }
-    </script>
+    <main>
+        <section>
+            <h2>Tarefas</h2>
+            <ul>
+                <li>
+                    <input type="checkbox" id="task1" name="task1">
+                    <label for="task1">Tarefa 1</label>
+                </li>
+            </ul>
+        </section>
+    </main>
+    <footer>
+        <a href="https://github.com/matheuskindrazki" target="_blank">
+            <i class="fa-brands fa-github"></i>
+        </a>
+    </footer>
 </body>
 </html>

@@ -13,26 +13,46 @@
             display: flex; /* Flexbox para layout */
             flex-direction: column; /* Direção da coluna */
             align-items: center; /* Centraliza horizontalmente */
-            height: 100vh; /* Altura total da viewport */
+            min-height: 100vh; /* Altura total da viewport */
             margin: 0; /* Remove margens padrão */
+            padding: 20px; /* Adiciona um pouco de espaço */
+            box-sizing: border-box; /* Inclui padding e border na largura */
         }
-        /* Removido o estilo de hover do body */
         header {
             display: flex;
             justify-content: space-between;
             align-items: center; /* Centraliza verticalmente */
-            padding: 10px; /* Adiciona um pouco de espaço */
             width: 100%; /* Largura total */
+            max-width: 600px; /* Largura máxima */
+            margin-bottom: 20px; /* Margem inferior */
         }
         h1 {
             font-family: 'Roboto', sans-serif; /* Aplica a fonte moderna ao título */
+            margin: 0; /* Remove margens */
+        }
+        .add-task-container {
+            display: flex;
+            align-items: center;
+            overflow: hidden;
+        }
+        #taskInput {
+            width: 0;
+            padding: 10px;
+            border: 1px solid #87CEEB;
+            border-radius: 5px 0 0 5px;
+            transition: width 0.3s ease-out;
+            box-sizing: border-box;
+        }
+        #taskInput.show {
+            width: 200px;
+            margin-right: 5px;
         }
         button {
             background-color: #87CEEB; /* Cor de fundo do botão */
             color: #001f3f; /* Cor do texto do botão */
             border: none; /* Remove borda */
             border-radius: 5px; /* Bordas arredondadas */
-            padding: 10px 15px; /* Espaçamento interno */
+            padding: 10px; /* Espaçamento interno */
             cursor: pointer; /* Muda o cursor ao passar o mouse */
             transition: background-color 0.3s; /* Transição suave */
         }
@@ -40,40 +60,45 @@
             background-color: #001f3f; /* Cor de fundo ao passar o mouse */
             color: #87CEEB; /* Cor do texto ao passar o mouse */
         }
-        .add-task {
-            margin: 20px; /* Margem para espaçamento */
-            text-align: center; /* Centraliza o texto dentro da seção */
-            display: flex; /* Flexbox para centralização */
-            flex-direction: column; /* Direção da coluna */
-            align-items: center; /* Centraliza horizontalmente */
-        }
-        .show {
-            display: block; /* Classe para mostrar a seção */
+        @media (max-width: 600px) {
+            h1 {
+                font-size: 24px; /* Reduz o tamanho da fonte do título */
+            }
+            #taskInput, button {
+                font-size: 16px; /* Reduz o tamanho da fonte do input */
+            }
         }
     </style>
 </head>
 <body>
     <header>
         <h1>To-do List</h1>
-        <button onclick="toggleAddTask()"><i class="fas fa-plus"></i></button> <!-- Ícone do Font Awesome -->
+        <div class="add-task-container">
+            <input type="text" id="taskInput" placeholder="Adicionar nova tarefa">
+            <button onclick="toggleAddTask()"><i class="fas fa-plus"></i></button> <!-- Ícone do Font Awesome -->
+        </div>
     </header>
-    <!-- Seção para adicionar tarefa -->
-    <div class="add-task show" id="addTaskSection"> <!-- Adicionei a classe show aqui -->
-        <input type="text" placeholder="Adicionar nova tarefa" id="taskInput">
-        <button onclick="addTask()">Adicionar Tarefa</button>
-    </div>
-    <!-- Conteúdo HTML aqui -->
     <script>
         function toggleAddTask() {
-            const addTaskSection = document.getElementById('addTaskSection');
-            addTaskSection.classList.toggle('show'); // Alterna a visibilidade da seção
+            const taskInput = document.getElementById('taskInput');
+            taskInput.classList.toggle('show');
+            if (taskInput.classList.contains('show')) {
+                taskInput.focus();
+            }
         }
+
+        document.getElementById('taskInput').addEventListener('keypress', function(e) {
+            if (e.key === 'Enter') {
+                addTask();
+            }
+        });
 
         function addTask() {
             const taskInput = document.getElementById('taskInput');
-            // Lógica para adicionar a tarefa (a ser implementada)
-            console.log(taskInput.value); // Exibe a tarefa no console
-            taskInput.value = ''; // Limpa o campo de entrada
+            if (taskInput.value.trim() !== '') {
+                console.log(taskInput.value);
+                taskInput.value = '';
+            }
         }
     </script>
 </body>

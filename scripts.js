@@ -20,6 +20,21 @@ document.addEventListener('DOMContentLoaded', () => {
         return li;
     }
 
+    function removeTaskWithAnimation(taskItem) {
+        taskItem.style.opacity = '0';
+        setTimeout(() => {
+            taskList.removeChild(taskItem);
+        }, 300);
+    }
+
+    function editTask(taskItem) {
+        const taskText = taskItem.querySelector('.task-text');
+        taskInput.value = taskText.textContent;
+        editingTask = taskText.textContent;
+        removeTaskWithAnimation(taskItem);
+        toggleTaskInput();
+    }
+
     function addTask() {
         const taskText = taskInput.value.trim();
         if (taskText) {
@@ -30,6 +45,7 @@ document.addEventListener('DOMContentLoaded', () => {
             setTimeout(() => {
                 taskElement.style.opacity = '1';
             }, 10);
+            toggleTaskInput();
         }
     }
 
@@ -48,6 +64,8 @@ document.addEventListener('DOMContentLoaded', () => {
             taskInput.style.padding = '10px 0';
             setTimeout(() => {
                 taskInput.style.display = 'none';
+                taskInput.value = '';
+                editingTask = null;
             }, 300);
         }
     }
@@ -73,25 +91,26 @@ document.addEventListener('DOMContentLoaded', () => {
         if (target.classList.contains('task-checkbox')) {
             taskItem.querySelector('.task-text').classList.toggle('completed');
         } else if (target.classList.contains('edit-btn') || target.parentElement.classList.contains('edit-btn')) {
-            const taskText = taskItem.querySelector('.task-text');
-            taskInput.value = taskText.textContent;
-            editingTask = taskItem;
-            toggleTaskInput();
+            editTask(taskItem);
         } else if (target.classList.contains('delete-btn') || target.parentElement.classList.contains('delete-btn')) {
-            taskItem.style.opacity = '0';
-            setTimeout(() => {
-                taskList.removeChild(taskItem);
-            }, 300);
+            removeTaskWithAnimation(taskItem);
         }
     });
 
     document.addEventListener('click', (event) => {
         if (!event.target.closest('.add-task-container') && !event.target.closest('.edit-btn')) {
-            taskInput.style.width = '0';
-            taskInput.style.padding = '10px 0';
-            setTimeout(() => {
-                taskInput.style.display = 'none';
-            }, 300);
+            if (taskInput.style.display !== 'none') {
+                if (editingTask) {
+                    const taskElement = createTaskElement(editingTask);
+                    taskList.insertBefore(taskElement, taskList.firstChild);
+                    taskElement.style.opacity = '0';
+                    setTimeout(() => {
+                        taskElement.style.opacity = '1';
+                    }, 10);
+                    editingTask = null;
+                }
+                toggleTaskInput();
+            }
         }
     });
 });

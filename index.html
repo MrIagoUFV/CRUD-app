@@ -3,37 +3,78 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Olá Mundo Moderno</title>
+    <title>Template HTML Zerado</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@700&display=swap" rel="stylesheet"> <!-- Fonte moderna -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"> <!-- Font Awesome -->
     <style>
         body {
-            font-family: Arial, sans-serif;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-            margin: 0;
-            background-color: #f0f0f0;
+            background-color: #001f3f; /* Azul bem escuro */
+            color: #87CEEB; /* Skyblue para o texto */
+            display: flex; /* Flexbox para layout */
+            flex-direction: column; /* Direção da coluna */
+            align-items: center; /* Centraliza horizontalmente */
+            height: 100vh; /* Altura total da viewport */
+            margin: 0; /* Remove margens padrão */
         }
-        .container {
-            text-align: center;
-            padding: 20px;
-            background-color: white;
-            border-radius: 10px;
-            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        /* Removido o estilo de hover do body */
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center; /* Centraliza verticalmente */
+            padding: 10px; /* Adiciona um pouco de espaço */
+            width: 100%; /* Largura total */
         }
         h1 {
-            color: #333;
+            font-family: 'Roboto', sans-serif; /* Aplica a fonte moderna ao título */
+        }
+        button {
+            background-color: #87CEEB; /* Cor de fundo do botão */
+            color: #001f3f; /* Cor do texto do botão */
+            border: none; /* Remove borda */
+            border-radius: 5px; /* Bordas arredondadas */
+            padding: 10px 15px; /* Espaçamento interno */
+            cursor: pointer; /* Muda o cursor ao passar o mouse */
+            transition: background-color 0.3s; /* Transição suave */
+        }
+        button:hover {
+            background-color: #001f3f; /* Cor de fundo ao passar o mouse */
+            color: #87CEEB; /* Cor do texto ao passar o mouse */
+        }
+        .add-task {
+            margin: 20px; /* Margem para espaçamento */
+            text-align: center; /* Centraliza o texto dentro da seção */
+            display: flex; /* Flexbox para centralização */
+            flex-direction: column; /* Direção da coluna */
+            align-items: center; /* Centraliza horizontalmente */
+        }
+        .show {
+            display: block; /* Classe para mostrar a seção */
         }
     </style>
 </head>
 <body>
-    <div class="container">
-        <h1>Olá, Mundo!</h1>
-        <p>Bem-vindo ao meu site moderno.</p>
+    <header>
+        <h1>To-do List</h1>
+        <button onclick="toggleAddTask()"><i class="fas fa-plus"></i></button> <!-- Ícone do Font Awesome -->
+    </header>
+    <!-- Seção para adicionar tarefa -->
+    <div class="add-task show" id="addTaskSection"> <!-- Adicionei a classe show aqui -->
+        <input type="text" placeholder="Adicionar nova tarefa" id="taskInput">
+        <button onclick="addTask()">Adicionar Tarefa</button>
     </div>
+    <!-- Conteúdo HTML aqui -->
     <script>
-        console.log("JavaScript está funcionando!");
+        function toggleAddTask() {
+            const addTaskSection = document.getElementById('addTaskSection');
+            addTaskSection.classList.toggle('show'); // Alterna a visibilidade da seção
+        }
+
+        function addTask() {
+            const taskInput = document.getElementById('taskInput');
+            // Lógica para adicionar a tarefa (a ser implementada)
+            console.log(taskInput.value); // Exibe a tarefa no console
+            taskInput.value = ''; // Limpa o campo de entrada
+        }
     </script>
 </body>
 </html>
-

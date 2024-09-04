@@ -1,0 +1,115 @@
+body {
+    font-family: 'Roboto', sans-serif;
+    background-color: #1a1a2e;
+    color: #ffffff;
+    margin: 0;
+    padding: 0;
+}
+
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px;
+    background-color: #16213e;
+}
+
+h1 {
+    margin: 0;
+    font-size: 24px;
+}
+
+.add-task-container {
+    display: flex;
+    align-items: center;
+}
+
+#taskInput {
+    display: none;
+    padding: 10px;
+    border: none;
+    border-radius: 4px;
+    margin-right: 10px;
+    font-size: 16px;
+    background-color: #0f3460;
+    color: #ffffff;
+    transition: all 0.3s ease;
+}
+
+#addTaskBtn {
+    background-color: #0f3460;
+    color: #ffffff;
+    border: none;
+    border-radius: 4px;
+    padding: 10px 15px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+#addTaskBtn:hover {
+    background-color: #e94560;
+}
+
+main {
+    padding: 20px;
+}
+
+#taskList {
+    list-style-type: none;
+    padding: 0;
+}
+
+.task-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #0f3460;
+    margin-bottom: 10px;
+    padding: 10px;
+    border-radius: 4px;
+    transition: all 0.3s ease;
+}
+
+.task-content {
+    display: flex;
+    align-items: center;
+}
+
+.task-checkbox {
+    margin-right: 10px;
+}
+
+.task-text {
+    font-size: 16px;
+}
+
+.task-actions {
+    display: flex;
+}
+
+.edit-btn,
+.delete-btn {
+    background-color: transparent;
+    border: none;
+    color: #ffffff;
+    font-size: 16px;
+    cursor: pointer;
+    margin-left: 10px;
+    transition: color 0.3s ease;
+}
+
+.edit-btn:hover,
+.delete-btn:hover {
+    color: #e94560;
+}
+
+.task-checkbox:checked + .task-text {
+    text-decoration: line-through;
+    opacity: 0.6;
+}
+
+.task-text.completed {
+    text-decoration: line-through;
+    opacity: 0.6;
+}
